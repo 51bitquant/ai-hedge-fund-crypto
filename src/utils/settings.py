@@ -15,6 +15,11 @@ class SignalSettings(BaseModel):
     strategies: List[str]
 
 
+class ModelSettings(BaseModel):
+    name: str
+    provider: str
+
+
 class Settings(BaseSettings):
     mode: str
     start_date: datetime
@@ -25,6 +30,7 @@ class Settings(BaseSettings):
     show_reasoning: bool
     show_agent_graph: bool = True
     signals: SignalSettings
+    model: ModelSettings
 
     @model_validator(mode='after')
     def check_primary_interval_in_intervals(self):

@@ -11,4 +11,6 @@ signals:
   tickers: ["BTCUSDT", "ETHUSDT"]
   strategies: ['MacdStrategy']
 # , "RSIStrategy"]
-
+model:
+  name: "deepseek/deepseek-r1-0528:free"
+  provider: "OpenRouter"

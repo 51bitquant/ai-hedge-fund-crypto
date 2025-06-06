@@ -21,6 +21,8 @@ if __name__ == "__main__":
         strategies=settings.signals.strategies,
         show_agent_graph=settings.show_agent_graph,
         show_reasoning=settings.show_reasoning,
+        model_name=settings.model.name,
+        model_provider=settings.model.provider,
     )
 
     print("Starting backtest...")

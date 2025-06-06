@@ -189,6 +189,8 @@ BINANCE_API_SECRET=your-binance-api-secret
 
 # LLM API keys (if using AI assistants)
 OPENAI_API_KEY=your-openai-api-key
+GROQ_API_KEY=your-groq-api-key
+OPENROUTER_API_KEY=your-openrouter-api-key
 ```
 
 ## Configuration
