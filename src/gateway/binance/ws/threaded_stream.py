@@ -20,7 +20,7 @@ class ThreadedApiManager(threading.Thread):
     ):
         """Initialise the BinanceSocketManager"""
         super().__init__()
-        self._loop: asyncio.AbstractEventLoop = get_loop() if _loop is None else _loop
+        self._loop: asyncio.AbstractEventLoop = None  # Initialize as None, created in the run method
         self._client: Optional[AsyncClient] = None
         self._running: bool = True
         self._socket_running: Dict[str, bool] = {}
@@ -62,7 +62,16 @@ class ThreadedApiManager(threading.Thread):
         del self._socket_running[path]
 
     def run(self):
-        self._loop.run_until_complete(self.socket_listener())
+        # Create a new event loop for each thread
+        self._loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(self._loop)
+        
+        try:
+            # Run the event loop until completion
+            self._loop.run_until_complete(self.socket_listener())
+        finally:
+            # Ensure the event loop is closed when the thread ends
+            self._loop.close()
 
     def stop_socket(self, socket_name):
         if socket_name in self._socket_running:
@@ -79,6 +88,7 @@ class ThreadedApiManager(threading.Thread):
         self._running = False
         if self._client and self._loop and not self._loop.is_closed():
             try:
+                # Use run_coroutine_threadsafe to execute coroutines in the event loop
                 future = asyncio.run_coroutine_threadsafe(
                     self.stop_client(), self._loop
                 )
