@@ -1,4 +1,5 @@
 mode: backtest
+exchange: binance
 start_date: 2025-04-01
 end_date: 2025-05-01
 primary_interval: 1h

@@ -7,11 +7,14 @@ This module handles the first step in the workflow: fetching data from the data 
 from datetime import datetime, timedelta
 from typing import Dict, Any
 
-from src.utils import BinanceDataProvider, Interval
+from src.utils import BinanceDataProvider, OkxDataProvider, Interval, settings
 from .base_node import BaseNode, AgentState
 
 # Initialize data provider
-data_provider = BinanceDataProvider()
+if settings.exchange.lower() == "okx":
+    data_provider = OkxDataProvider()
+else:
+    data_provider = BinanceDataProvider()
 
 
 class DataNode(BaseNode):
@@ -20,7 +23,7 @@ class DataNode(BaseNode):
 
     def __call__(self, state: AgentState) -> Dict[str, Any]:
         """
-        Fetch data for all required timeframes using the BinanceDataProvider.
+        Fetch data for all required timeframes using the configured data provider.
 
         Args:
             state: The current state with symbol information

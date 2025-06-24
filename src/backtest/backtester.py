@@ -7,6 +7,8 @@ from colorama import Fore, Style
 from utils import Interval, QUANTITY_DECIMALS, format_backtest_row, print_backtest_results
 from agent import Agent
 from utils.binance_data_provider import BinanceDataProvider
+from utils.okx_data_provider import OkxDataProvider
+from utils import settings
 import matplotlib.pyplot as plt
 
 
@@ -55,7 +57,10 @@ class Backtester:
         self.model_base_url = model_base_url
         self.show_agent_graph = show_agent_graph
         self.show_reasoning = show_reasoning
-        self.binance_data_provider = BinanceDataProvider()
+        if settings.exchange.lower() == "okx":
+            self.data_provider = OkxDataProvider()
+        else:
+            self.data_provider = BinanceDataProvider()
         self.klines: Dict[str, pd.DataFrame]() = {}
 
         # Initialize portfolio with support for long/short positions
@@ -275,10 +280,12 @@ class Backtester:
         print("\nPre-fetching data for the entire backtest period...")
         for ticker in self.tickers:
             # Fetch price data for the entire period
-            data = self.binance_data_provider.get_historical_klines(symbol=ticker,
-                                                                    timeframe=self.primary_interval.value,
-                                                                    start_date=self.start_date,
-                                                                    end_date=self.end_date)
+            data = self.data_provider.get_historical_klines(
+                symbol=ticker,
+                timeframe=self.primary_interval.value,
+                start_date=self.start_date,
+                end_date=self.end_date,
+            )
             self.klines[ticker] = data
 
         print("Data pre-fetch complete.")

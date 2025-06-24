@@ -1,6 +1,7 @@
 from .settings import settings
 from .constants import Interval, COLUMNS, NUMERIC_COLUMNS, QUANTITY_DECIMALS
 from .binance_data_provider import BinanceDataProvider
+from .okx_data_provider import OkxDataProvider
 from .util_func import (import_strategy_class,
                         save_graph_as_png,
                         deep_merge_dicts,
@@ -15,6 +16,7 @@ __all__ = ['settings',
            'NUMERIC_COLUMNS',
            'QUANTITY_DECIMALS',
            'BinanceDataProvider',
+           'OkxDataProvider',
            'import_strategy_class',
            'save_graph_as_png',
            'deep_merge_dicts',

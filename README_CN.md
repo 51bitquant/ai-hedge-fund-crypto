@@ -129,7 +129,7 @@ signals:
 
 ### 前提条件
 - Python 3.9或更高版本（推荐Python 3.12 — 开发时使用）
-- 币安账户（获取市场数据必需）
+ - 币安或OKX账户（获取市场数据必需）
 
 ⚠️ 虽然Python 3.9+应该可以工作，但我们建议使用Python 3.12以获得与开发环境的完全兼容性。
 
@@ -175,9 +175,11 @@ cp .env.example .env
 
 5. 在`.env`文件中添加API密钥：
 ```
-# 币安API密钥（获取数据必需）
+# 币安或OKX API密钥（根据选择的交易所）
 BINANCE_API_KEY=your-binance-api-key
 BINANCE_API_SECRET=your-binance-api-secret
+OKX_API_KEY=your-okx-api-key
+OKX_API_SECRET=your-okx-api-secret
 
 # LLM API密钥（如果使用AI助手）
 OPENAI_API_KEY=your-openai-api-key

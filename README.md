@@ -138,7 +138,7 @@ This architecture provides several advantages:
 
 ### Prerequisites
 - Python 3.9 or higher (Python 3.12 recommended — used during development)
-- Binance account (required for accessing market data)
+ - Binance or OKX account (required for accessing market data)
 
 ⚠️ While Python 3.9+ should work, we recommend using Python 3.12 for full compatibility with the development environment.
 
@@ -183,9 +183,11 @@ cp .env.example .env
 
 5. Add your API keys to the `.env` file:
 ```
-# Binance API keys (required for data access)
+# Binance or OKX API keys (depending on the exchange you use)
 BINANCE_API_KEY=your-binance-api-key
 BINANCE_API_SECRET=your-binance-api-secret
+OKX_API_KEY=your-okx-api-key
+OKX_API_SECRET=your-okx-api-secret
 # For running LLMs hosted by openai (gpt-4o, gpt-4o-mini, etc.)
 # Get your OpenAI API key from https://platform.openai.com/
 OPENAI_API_KEY=your-open-ai-key

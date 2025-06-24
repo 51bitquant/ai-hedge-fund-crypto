@@ -22,6 +22,7 @@ class ModelSettings(BaseModel):
 
 
 class Settings(BaseSettings):
+    exchange: str = "binance"
     mode: str
     start_date: datetime
     end_date: datetime
