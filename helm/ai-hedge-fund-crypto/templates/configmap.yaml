@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "ai-hedge-fund-crypto.fullname" . }}-config
+  labels:
+    {{- include "ai-hedge-fund-crypto.labels" . | nindent 4 }}
+data:
+  config.yaml: |-
+    mode: {{ .Values.config.mode }}
+    start_date: {{ .Values.config.startDate }}
+    end_date: {{ .Values.config.endDate }}
+    primary_interval: {{ .Values.config.primaryInterval }}
+    initial_cash: {{ .Values.config.initialCash }}
+    margin_requirement: {{ .Values.config.marginRequirement }}
+    show_reasoning: {{ .Values.config.showReasoning }}
+    show_agent_graph: {{ .Values.config.showAgentGraph }}
+    signals:
+      intervals:
+      {{- range .Values.config.signals.intervals }}
+        - {{ . }}
+      {{- end }}
+      tickers:
+      {{- range .Values.config.signals.tickers }}
+        - {{ . }}
+      {{- end }}
+      strategies:
+      {{- range .Values.config.signals.strategies }}
+        - {{ . }}
+      {{- end }}
+    model:
+      name: {{ .Values.config.model.name | quote }}
+      provider: {{ .Values.config.model.provider | quote }}
+      {{- if .Values.config.model.baseUrl }}
+      base_url: {{ .Values.config.model.baseUrl | quote }}
+      {{- end }}

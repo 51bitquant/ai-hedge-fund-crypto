@@ -1,0 +1,13 @@
+apiVersion: v2
+name: ai-hedge-fund-crypto
+description: A Helm chart for AI Hedge Fund Crypto trading bot
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - crypto
+  - trading
+  - ai
+maintainers:
+  - name: ABoringBusiness
+    url: https://github.com/ABoringBusiness/ai-hedge-fund-crypto
