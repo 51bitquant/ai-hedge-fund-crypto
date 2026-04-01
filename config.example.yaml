@@ -13,6 +13,11 @@ signals:
 # , "RSIStrategy"]
 model:
   name: "gpt-4o-mini" # choose your model.
-  provider: "openai"  # llm provider.
+  provider: "openai"  # llm provider: openai, groq, openrouter, gemini, anthropic, minimax, ollama
   base_url: "https://api.openai.com/v1"  # you can change it to your own.
+
+# MiniMax example:
+# model:
+#   name: "MiniMax-M2.7"
+#   provider: "minimax"
 

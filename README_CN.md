@@ -185,6 +185,9 @@ GROQ_API_KEY=your-groq-api-key
 OPENROUTER_API_KEY=your-openrouter-api-key
 ANTHROPIC_API_KEY=your-anthropic-api-key
 GOOGLE_API_KEY=your-google-api-key
+# MiniMax API密钥（如使用MiniMax-M2.7等模型）
+# 从 https://www.minimax.io 获取API密钥
+MINIMAX_API_KEY=your-minimax-api-key
 ```
 
 ## 配置
@@ -206,10 +209,10 @@ signals:
   strategies: ['MacdStrategy']  # 使用的策略
 model:
   name: "gpt-4o-mini" # 配置你的模型
-  provider: "openai"  # 配置llm 提供商, 支持 # openai， groq， openrouter，gemini，anthropic，ollama
+  provider: "openai"  # 配置llm 提供商, 支持 openai, groq, openrouter, gemini, anthropic, minimax, ollama
 #  base_url: "https://api.openai.com/v1"  # 不是必须的，你可以配置base_url
 ```
-**支持的提供商包括 OpenAI、Groq、OpenRouter、Gemini、Anthropic 和 Ollama。**
+**支持的提供商包括 OpenAI、Groq、OpenRouter、Gemini、Anthropic、[MiniMax](https://www.minimax.io) 和 Ollama。**
 大多数大语言模型（LLM）兼容 OpenAI SDK，因此你通常只需修改模型名称和 base_url，即可切换到目标提供商的模型。
 
 
