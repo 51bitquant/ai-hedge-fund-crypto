@@ -193,6 +193,9 @@ GROQ_API_KEY=your-open-ai-key
 OPENROUTER_API_KEY=your-open-ai-key
 ANTHROPIC_API_KEY=your-anthropic-api-key
 GOOGLE_API_KEY=your-google-api-key
+# For running LLMs hosted by MiniMax (MiniMax-M2.7, MiniMax-M2.7-highspeed, etc.)
+# Get your MiniMax API key from https://www.minimax.io
+MINIMAX_API_KEY=your-minimax-api-key
 ```
 
 ## Configuration
@@ -214,10 +217,10 @@ signals:
   strategies: ['MacdStrategy']  # Strategies to use
 model:
   name: "gpt-4o-mini" # config your model
-  provider: "openai"  # config your llm provider, support openai， groq， openrouter，gemini，anthropic，ollama
+  provider: "openai"  # config your llm provider, support openai, groq, openrouter, gemini, anthropic, minimax, ollama
 #  base_url: "https://api.openai.com/v1"  # not required, but if you want to set the base_url
 ```
-**Supported providers include OpenAI, Groq, OpenRouter, Gemini, Anthropic, and Ollama.** Most LLMs are compatible with the OpenAI SDK,
+**Supported providers include OpenAI, Groq, OpenRouter, Gemini, Anthropic, [MiniMax](https://www.minimax.io), and Ollama.** Most LLMs are compatible with the OpenAI SDK,
 so you can often switch models by simply adjusting the model name and base_url to match the desired provider.
 
 ## Usage

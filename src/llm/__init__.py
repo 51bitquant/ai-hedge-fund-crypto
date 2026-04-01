@@ -64,6 +64,17 @@ def get_llm(provider: str, model: str, base_url: Optional[str] = None):
             timeout=timeout,
             max_retries=max_retries,
         )
+    elif provider == "minimax":
+        base_url = base_url or "https://api.minimax.io/v1"
+        # MiniMax requires temperature in (0.0, 1.0]
+        return ChatOpenAI(
+            api_key=os.getenv("MINIMAX_API_KEY"),
+            base_url=base_url,
+            model=model,
+            timeout=timeout,
+            max_retries=max_retries,
+            temperature=0.7,
+        )
     elif provider == "ollama":
         base_url = base_url or "http://localhost:11434"
         return ChatOllama(
