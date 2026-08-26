@@ -8,7 +8,7 @@ import requests
 class FXMacroDataProvider:
     """Optional macro-data provider for crypto workflows."""
 
-    DEFAULT_BASE_URL = "https://fxmacrodata.com/api/v1/"
+    DEFAULT_BASE_URL = "https://api.fxmacrodata.com/v1/"
 
     def __init__(
         self,
