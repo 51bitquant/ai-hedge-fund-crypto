@@ -30,11 +30,15 @@ class FXMacroDataProvider:
         return cls()
 
     def request(self, path: str, **params: Any) -> Dict[str, Any]:
+        """GET one page. List endpoints accept ``limit`` (1-100, default 20)
+        and ``offset``; the response ``pagination`` block has ``has_more`` and
+        ``next_offset`` for the next page."""
         query = {key: value for key, value in params.items() if value is not None}
-        if self.api_key:
-            query["api_key"] = self.api_key
+        headers = {"X-API-Key": self.api_key} if self.api_key else {}
         url = urljoin(self.base_url, path.lstrip("/"))
-        response = requests.get(url, params=query, timeout=self.timeout)
+        response = requests.get(
+            url, params=query, headers=headers, timeout=self.timeout
+        )
         response.raise_for_status()
         return response.json()
 
