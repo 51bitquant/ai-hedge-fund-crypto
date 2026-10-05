@@ -7,11 +7,12 @@ This module handles the first step in the workflow: fetching data from the data 
 from datetime import datetime, timedelta
 from typing import Dict, Any
 
-from src.utils import BinanceDataProvider, Interval
+from src.utils import BinanceDataProvider, FXMacroDataProvider, Interval
 from .base_node import BaseNode, AgentState
 
 # Initialize data provider
 data_provider = BinanceDataProvider()
+macro_provider = FXMacroDataProvider.from_env()
 
 
 class DataNode(BaseNode):
@@ -40,5 +41,10 @@ class DataNode(BaseNode):
                 data[f"{ticker}_{timeframe}"] = df
             else:
                 print(f"[Warning] No data returned for {ticker} at interval {timeframe}")
+
+        try:
+            data["macro_context"] = macro_provider.market_context(limit=10)
+        except Exception as exc:
+            print(f"[Warning] No FXMacroData macro context returned: {exc}")
 
         return state
